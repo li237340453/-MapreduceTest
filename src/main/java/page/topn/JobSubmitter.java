@@ -1,6 +1,7 @@
 package page.topn;
 
 import java.io.IOException;
+import java.util.Properties;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -16,8 +17,26 @@ import cn.mpareduce.test.WordcountReducer;
 
 public class JobSubmitter {
 	public static void main(String[] args) throws Exception {
-		Configuration conf = new Configuration();
 		
+		/*
+		 *  通过加载classpath下的core-default.xml、core-site.xml、hdfs-site.xml、hdfs-default.xml文件解析参数
+		 */
+		Configuration conf = new Configuration();
+//		conf.addResource(file);
+		
+		
+		/*
+		 * 挺难过过porp文件加载
+		 * 
+		 */
+//		Properties props = new Properties();
+//		props.load(JobSubmitter.class.getResourceAsStream("topn.properties"));
+//		conf.setInt("top.n", Integer.parseInt(props.getProperty("top.n")));
+		
+		
+		/*
+		 * 通过代码设置参数
+		 */
 		conf.setInt("top.n", 3);
 		
 		Job job = Job.getInstance(conf);
