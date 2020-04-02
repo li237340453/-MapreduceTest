@@ -6,8 +6,6 @@ import java.io.IOException;
 
 import org.apache.hadoop.io.WritableComparable;
 
-import order.topn.OrderBean;
-
 public class OrderBean implements WritableComparable<OrderBean>{
 	private String orderId;
 	private String userId;
