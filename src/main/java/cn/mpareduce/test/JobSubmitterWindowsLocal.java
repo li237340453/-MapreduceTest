@@ -23,11 +23,14 @@ public class JobSubmitterWindowsLocal {
 		job.setMapperClass(WordcountMapper.class);
 		job.setReducerClass(WordcountReducer.class);
 		
+		job.setCombinerClass(WordcountReducer.class);
+		
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(IntWritable.class);
 		
-		FileInputFormat.setInputPaths(job, new Path("D:\\code\\eclipse-workspace\\mapreducetest\\data\\input"));
-		FileOutputFormat.setOutputPath(job, new Path("D:\\code\\eclipse-workspace\\mapreducetest\\data\\output"));
+		FileInputFormat.setInputPaths(job, new Path(args[0]));
+		FileOutputFormat.setOutputPath(job, new Path(args[1]));
+		job.setNumReduceTasks(Integer.parseInt(args[2]));
 		
 		System.exit(job.waitForCompletion(true)?0:1);
 	}
